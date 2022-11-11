@@ -1,0 +1,8 @@
+<% if true || controller_supports_current_record? && current_record.respond_to?(:ref_id) && controller.action_name == 'show' %>
+
+  <script>
+  </script>
+
+  <%= javascript_include_tag "barcode_button.js?_t=#{ASConstants.VERSION}4553" %>
+
+<% end %>
