@@ -3,11 +3,12 @@ class GettyBarcode
     opts[:format] ||= 'png'
     opts[:dpi] ||= 200
     opts[:dot_size_px] ||= 8
+    opts[:border] ||= true
 
     bc = org.krysalis.barcode4j.impl.datamatrix.DataMatrixBean.new()
 
-    bc.setModuleWidth(org.krysalis.barcode4j.tools.UnitConv.in2mm(opts[:dot_size_px].to_f / opts[:dpi].to_f));
-    # bc.doQuietZone(false); # true by default adds a white border
+    bc.setModuleWidth(org.krysalis.barcode4j.tools.UnitConv.in2mm(opts[:dot_size_px].to_f / opts[:dpi].to_f))
+    bc.doQuietZone(opts[:border])
     bc.setShape(org.krysalis.barcode4j.impl.datamatrix.SymbolShapeHint::FORCE_SQUARE);
 
     anti_alias = false
