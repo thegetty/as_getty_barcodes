@@ -2,9 +2,10 @@
     $(document).on("loadedrecordform.aspace", function(event, $pane) {
         const name = $('label[for=archival_object_component_id_]').parent().find('div').text() || document.location.hash.split('::')[1];
         const data = $('label[for=archival_object_ref_id_]').parent().find('.identifier-display').text();
+        const text = document.location.hash.split('::')[1].split('_')[2];
 
         if (data) {
-            const url = AS.app_prefix('/plugins/getty_barcode?data=' + data + '&name=barcode_' + name);
+            const url = AS.app_prefix('/plugins/getty_barcode?data=' + data + '&name=barcode_' + name + '&text=' + text);
             const bbut = '<a id="getty-barcode-button" class="btn btn-sm btn-default" href="' + url + '">Barcode</a>';
             $('.record-toolbar > .btn-toolbar > .btn-group').prepend(bbut);
 
