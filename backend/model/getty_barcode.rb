@@ -1,13 +1,35 @@
 class GettyBarcode
   def self.generate(data, opts = {})
+    # image file format. default png. other supported values: jpg, gif, bmp
     opts[:format] ||= 'png'
+
+    # dots per inch for calculating the image resolution. default 200
     opts[:dpi] ||= 200
-    opts[:dot_size_px] ||= 8
-    opts[:border] ||= true
+
+    # size of the printed image for calculating image resolution. default 2 inches
     opts[:image_size_in] ||= 2
 
+    # number of pixels (width and height because it's square) for the image
     resolution = opts[:image_size_in] * opts[:dpi]
-    barcode_size = 0.6 # 1 = whole image, 0.5 = half the image
+
+    # number of pixels for each dot in the barcode. default 8px
+    opts[:dot_size_px] ||= 8
+
+    # whether to include a white border around the barcode. default true
+    opts[:border] ||= true
+
+    # text to include above the barcode. no default. if not set then no text appears
+    opts[:banner]
+
+    # text to include below the barcode. no default. if not set then no text appears
+    opts[:text]
+
+    # the factional size of the barcode with respect to the image size
+    # tune this to maximize the size of the barcode while avoiding conflict
+    # with the text. default 0.6 (60% of the image size)
+    opts[:barcode_size] ||= 0.6
+
+
     anti_alias = false
     orientation = 0
 
@@ -52,7 +74,7 @@ class GettyBarcode
 
     g2d.scale(1 / text_scale, 1 / text_scale)
 
-    bc_scale = barcode_size * bi.getWidth() / dim.getWidthPlusQuiet(orientation)
+    bc_scale = opts[:barcode_size] * bi.getWidth() / dim.getWidthPlusQuiet(orientation)
 
     bc_offset = (resolution - dim.getWidthPlusQuiet(orientation) * bc_scale) / 2
     g2d.translate(bc_offset, bc_offset)
