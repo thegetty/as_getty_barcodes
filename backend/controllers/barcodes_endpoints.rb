@@ -11,7 +11,7 @@ class ArchivesSpaceService < Sinatra::Base
     [
      200,
      {"Content-Type" => "image/png"},
-     GettyBarcode.generate(params[:data], {:text => params[:text], :banner => 'JPC Archive'})
+     GettyBarcode.generate(params[:data], {:text => params[:text], :banner => (AppConfig[:getty_barcode_banner] rescue 'JPC Archive')})
     ]
   end
 end

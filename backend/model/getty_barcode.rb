@@ -27,7 +27,7 @@ class GettyBarcode
     # the factional size of the barcode with respect to the image size
     # tune this to maximize the size of the barcode while avoiding conflict
     # with the text. default 0.6 (60% of the image size)
-    opts[:barcode_size] ||= 0.6
+    opts[:barcode_size] ||= (AppConfig[:getty_barcode_fractional_size] rescue 0.6)
 
 
     anti_alias = false
