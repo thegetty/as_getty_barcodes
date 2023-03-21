@@ -37,6 +37,10 @@ database ID of the Archival Object.
 The data used to generate the barcode is the AO's Ref ID. If the AO does not
 have a Ref ID value set, then the barcode button will not appear.
 
+Sample:
+
+![Barcode sample](samples/barcode_archival_object_2.png)
+
 
 ## Configuration
 
