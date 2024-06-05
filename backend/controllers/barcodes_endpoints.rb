@@ -3,7 +3,7 @@ class ArchivesSpaceService < Sinatra::Base
     .description("Get a Getty Barcode")
     .params(
             ["data", String, "Data used to generate the barcode"],
-            ["text", String, "Text displayed below the barcode"]
+            ["text", String, "Text displayed below the barcode"],
             ["text", String, "Text displayed above the barcode and below the banner"]
             )
     .permissions([])
