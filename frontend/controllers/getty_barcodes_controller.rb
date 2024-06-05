@@ -7,7 +7,7 @@ class GettyBarcodesController < ApplicationController
     self.response.headers["Content-Disposition"] = "attachment; filename=\"#{params[:name]}.png\""
 
     self.response_body = Enumerator.new do |stream|
-      JSONModel::HTTP.stream('/getty_barcode', {:data => params[:data], :text => params[:text]}) do |response|
+      JSONModel::HTTP.stream('/getty_barcode', {:data => params[:data], :text => params[:text], :refid => params[:refid]}) do |response|
         response.read_body do |chunk|
           stream << chunk
         end

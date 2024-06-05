@@ -21,13 +21,17 @@ class GettyBarcode
     # text to include above the barcode. no default. if not set then no text appears
     opts[:banner]
 
+    #SELA: text to include below the banner above the barcode. no default. if not set then no text appears
+    opts[:refid]
+
     # text to include below the barcode. no default. if not set then no text appears
     opts[:text]
 
     # the factional size of the barcode with respect to the image size
     # tune this to maximize the size of the barcode while avoiding conflict
     # with the text. default 0.6 (60% of the image size)
-    opts[:barcode_size] ||= (AppConfig[:getty_barcode_fractional_size] rescue 0.6)
+    #SELA: reduced to 0.5
+    opts[:barcode_size] ||= (AppConfig[:getty_barcode_fractional_size] rescue 0.58)
 
 
     anti_alias = false
@@ -66,10 +70,17 @@ class GettyBarcode
       g2d.drawString(opts[:banner], xoff, 10)
     end
 
+#SELA: added code for refid display
+    if opts[:refid]
+      rect = font.getStringBounds(opts[:refid], java.awt.font.FontRenderContext.new(nil, true, true))
+      xoff = (50 - (rect.width / 2)).round
+      g2d.drawString(opts[:refid], xoff, 20)
+    end
+
     if opts[:text]
       rect = font.getStringBounds(opts[:text], java.awt.font.FontRenderContext.new(nil, true, true))
       xoff = (50 - (rect.width / 2)).round
-      g2d.drawString(opts[:text], xoff, 97)
+      g2d.drawString(opts[:text], xoff, 90)
     end
 
     g2d.scale(1 / text_scale, 1 / text_scale)
