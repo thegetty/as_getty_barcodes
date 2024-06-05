@@ -4,7 +4,7 @@ class ArchivesSpaceService < Sinatra::Base
     .params(
             ["data", String, "Data used to generate the barcode"],
             ["text", String, "Text displayed below the barcode"],
-            ["text", String, "Text displayed above the barcode and below the banner"]
+            ["refid", String, "Text displayed above the barcode and below the banner"]
             )
     .permissions([])
     .returns([200, "Barcode PNG"]) \
