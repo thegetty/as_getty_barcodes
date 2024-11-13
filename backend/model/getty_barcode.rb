@@ -1,7 +1,7 @@
 class GettyBarcode
   def self.generate(data, opts = {})
     # image file format. default png. other supported values: jpg, gif, bmp
-    opts[:format] ||= 'jpg'
+    opts[:format] ||= 'png'
 
     # dots per inch for calculating the image resolution. default 200
     opts[:dpi] ||= 200
@@ -62,7 +62,7 @@ class GettyBarcode
     text_scale = resolution / 100.0
     g2d.scale(text_scale, text_scale)
 
-    font = g2d.getFont
+    font = g2d.setFont(new Font("PT Sans", Font.PLAIN, fontSize));
 
     if opts[:banner]
       rect = font.getStringBounds(opts[:banner], java.awt.font.FontRenderContext.new(nil, true, true))
