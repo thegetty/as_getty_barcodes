@@ -1,7 +1,7 @@
 class GettyBarcode
   def self.generate(data, opts = {})
     # image file format. default png. other supported values: jpg, gif, bmp
-    opts[:format] ||= 'png'
+    opts[:format] ||= 'jpg'
 
     # dots per inch for calculating the image resolution. default 200
     opts[:dpi] ||= 200
