@@ -10,7 +10,8 @@
             if (data) {
                 const url = AS.app_prefix('/plugins/getty_barcode?data=' + data + '&name=barcode_' + name + '&text=' + text + '&refid=' + refid);
                 const bbut = '<a id="getty-barcode-button" class="btn btn-sm btn-default" href="' + url + '">Barcode</a>';
-                $('.record-toolbar > .btn-toolbar > .btn-group').prepend(bbut);
+                // The ml-auto here feels fragile, but AS V4 has no good way to exclude the Edit button group, so here we are
+                $('.record-toolbar > .btn-group.ml-auto').prepend(bbut);
 
                 // show the barcode in the title area. disable for now. not sure if it's required
                 // const bimg = '<div class="pull-right"><a href="' + url + '" title="Click to download"><img id="getty-barcode-image" style="height:50px;" src="' + url + '"/></a></div>';
